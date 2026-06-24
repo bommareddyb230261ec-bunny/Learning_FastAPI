@@ -15,15 +15,22 @@ app.add_middleware(
 
 
 database_model.Base.metadata.create_all(bind=engine)  # This creates Tables for us
-
+products = [
+    {
+        "name":"Laptop",
+        "description":"Dell Laptop",
+        "price":50000,
+        "quantity":5
+    }
+]
 def init_db():
     db=session()
-    count=db.query(database_model.Product).count
+    count=db.query(database_model.Product).count()
     if count==0:
         for i in products:
             db.add(database_model.Product(**i.model_dump()))
         db.commit()
-
+init_db()
 def get_db():
     db=session()
     try:
