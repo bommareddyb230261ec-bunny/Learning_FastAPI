@@ -13,6 +13,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+
 database_model.Base.metadata.create_all(bind=engine)  # This creates Tables for us
 
 def init_db():
